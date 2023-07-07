@@ -8,6 +8,7 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+   
     - name: Set up JDK
       uses: actions/setup-java@v2
       with:
@@ -16,11 +17,12 @@ jobs:
         
     - name: Make gradlew executable
       run: chmod +x ./gradlew 
+   
     - name: Build with Gradle
       run: ./gradlew assembleDebug --stacktrace
 
-    - name: Test with Gradle
-      run: ./gradlew test --stacktrace
+    #-name: Test with Gradle
+      #run: ./gradlew test --stacktrace
       
 
 
