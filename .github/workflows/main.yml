@@ -20,7 +20,7 @@ jobs:
       run: ./gradlew assembleDebug --stacktrace
 
     - name: Test with Gradle
-      run: ./gradlew test
+      run: ./gradlew test --stacktrace
       
 
 
