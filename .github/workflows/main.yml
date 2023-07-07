@@ -23,6 +23,10 @@ jobs:
 
     #-name: Test with Gradle
       #run: ./gradlew test --stacktrace
+    - uses: actions/upload-artifact@v3
+      with:
+         name: Package
+         path: build/libs
       
 
 
