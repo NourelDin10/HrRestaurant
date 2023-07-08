@@ -1,4 +1,4 @@
-name: Build Kotlin App
+name: Build and Publish APK
 
 on:
   push:
@@ -26,4 +26,10 @@ jobs:
       uses: gradle/wrapper-action@v6
 
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew assembleDebug
+
+    - name: Publish APK
+      uses: actions/upload-artifact@v2
+      with:
+        name: App APK
+        path: app/build/outputs/apk/debug/app-debug.apk
