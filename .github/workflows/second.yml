@@ -23,9 +23,6 @@ jobs:
         java-version: '17'
         distribution: 'adopt'
 
-    - name: Set up Gradle
-      uses: gradle/wrapper-action@v6
-
     - name: Build with Gradle
       run: ./gradlew assembleDebug
 
