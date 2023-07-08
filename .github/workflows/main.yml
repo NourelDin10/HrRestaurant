@@ -1,41 +1,30 @@
 name : CI/CD for Kotlin application
+on: [push]
 
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v2
-
-    - name: Set up JDK 17
+   
+    - name: Set up JDK
       uses: actions/setup-java@v2
       with:
         java-version: '17'
         distribution: 'adopt'
-
-    - name: Set up Gradle
-      uses: gradle/wrapper-action@v6
-
-    - name: Build with Gradle
-      run: ./gradlew assembleDebug
-
-    - name: Publish APK
-      uses: actions/upload-artifact@v2
-      with:
-        name: App APK
-        path: app/build/outputs/apk/debug/app-debug.apk
         
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew 
+   
+    - name: Build with Gradle
+      run: ./gradlew assembleDebug --stacktrace
+
+    #-name: Test with Gradle
+      #run: ./gradlew test --stacktrace
+    - uses: actions/upload-artifact@v3
+      with:
+         name: Package
+         path: app/my-art.jar
       
-
-
-    
