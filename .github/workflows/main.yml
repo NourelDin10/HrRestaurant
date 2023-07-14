@@ -1,7 +1,12 @@
-name : CI/CD for Kotlin application
-on: [push]
+name: Build and Publish APK
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
