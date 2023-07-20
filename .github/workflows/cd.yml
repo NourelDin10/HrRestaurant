@@ -44,12 +44,13 @@ jobs:
           aws-region: us-east-1
 
 
-    - uses: hkusu/s3-upload-action@v2
+    - uses: actions/checkout@master
+    - uses: shallwefootball/s3-upload-action@master
       with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_key_id: ${{ secrets.AWS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
           aws_bucket: android-bucket-test
-          aws-region: us-east-1
-          file-path: app/build/outputs/apk/debug/app-debug.apkname
+          source_dir:  app/build/outputs/apk/debug/app-debug.apkname
+
 
     
