@@ -34,7 +34,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: App APK
-        path: app/build/outputs/apk/debug/app-debug.apkname
+        path: app/build/outputs/apk/debug/app-debug.apk
     
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -51,7 +51,6 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
           aws-region: us-east-1
           aws_bucket: android-bucket-test
-          source_dir:  app/build/outputs/apk/debug/app-debug.apkname
-
+          source_dir: app/build/outputs/apk/debug/app-debug.apk
 
     
