@@ -35,7 +35,22 @@ jobs:
       with:
         name: App APK
         path: app/build/outputs/apk/debug/app-debug.apk
-    
+
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+          terraform_version: 1.0.0
+
+    - name: Terraform Init
+      run: terraform init ./terraform
+
+    - name: Terraform Apply
+      run: terraform apply ./terraform 
+      env:
+          aws_key_id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_access_key:: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -44,8 +59,9 @@ jobs:
           aws-region: us-east-1
 
 
-    - uses: actions/checkout@master
-    - uses: shallwefootball/s3-upload-action@master
+    - name: upload apk to s3
+      uses: actions/checkout@master
+      uses: shallwefootball/s3-upload-action@master
       with:
           aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID}}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
